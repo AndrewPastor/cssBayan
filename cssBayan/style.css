@@ -23,7 +23,7 @@ img {
 
 .tab input,
 .tab-image {
-    display: none;
+    visibility: hidden;
 }
 
 .tab {
@@ -52,15 +52,23 @@ img {
 
 .tab-image {
     padding: 0% 0.5rem;
-    margin: 1rem auto;
+    margin: 0;
+    overflow: hidden;
 }
 
-.tab :checked + .tab-title::after {
+.tab input:checked + .tab-title::after {
     content: '-';
 }
 
-.tab :checked ~ .tab-image {
-    display: block;
+.tab input:checked ~ .tab-image {
+    visibility: visible;
+    max-height: 35rem;
+    transition: all 0.7s ease;
+}
+
+.tab input:not(:checked) ~ .tab-image {
+    max-height: 0;
+    transition: all 0.7s ease;
 }
 
 @media (hover: hover) {
